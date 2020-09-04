@@ -1,0 +1,97 @@
+//fetch(url) : récupérer la ressource située à l'adresse url
+const bddTeddy = fetch('http://localhost:3000/api/teddies/');
+// variable nombre de peluche
+let nombreObjetBddTeddy;
+// tableau des noms de peluche
+const tabNom = [];
+const tabPhoto = [];
+const tabID = [];
+const tabPrix = [];
+// Emplacement de ma grille Produits & emplacement du contenu dynamique Produit & emplacement Titre produit & emplacement Description produit
+let carteProduit = document.getElementById('cardProduit');
+let nouveauCorpsDeCarte;
+let nouveauNomProduit;
+let nouvelleImageProduit;
+let nouveauPrixProduit;
+const urlProduit = '#';
+let nouveauLienIDProduit;
+let x = 0;
+let idSelectionneLienProduit;
+let lienBDD = 'http://localhost:3000/api/teddies/';
+
+//Création de ma fonction nouveaux éléments avec leur class Bootstrap pour un emplacement produit
+function nouveauProduit(emplacement) {
+    const nouvelArticle = document.createElement("article");
+    nouvelArticle.classList.add("col");
+    // Ajout de l'information ID à l'article
+    nouvelArticle.setAttribute("id", tabID[x]);
+    const nouvelleCarteProduit = document.createElement("div");
+    nouvelleCarteProduit.classList.add("card");
+    const nouveauCorpsDeCarte = document.createElement("div");
+    nouveauCorpsDeCarte.classList.add("card-body");
+    //attache
+    emplacement.appendChild(nouvelArticle);
+    nouvelArticle.appendChild(nouvelleCarteProduit);
+    nouvelleCarteProduit.appendChild(nouveauCorpsDeCarte);
+    // Création du titre et ajout de l'info
+    nouveauNomProduit = document.createElement("h2");
+    nouveauNomProduit.classList.add("card-title");
+    nouveauCorpsDeCarte.appendChild(nouveauNomProduit);
+    nouveauNomProduit.textContent = tabNom[x];
+    // Création de l'image et ajout du src
+    nouvelleImageProduit = document.createElement("img");
+    nouvelleImageProduit.classList.add("img-thumbnail");
+    nouvelleImageProduit.classList.add("img-fluid");
+    nouveauCorpsDeCarte.appendChild(nouvelleImageProduit);
+    nouvelleImageProduit.src = tabPhoto[x]; 
+    // Création du Prix et ajout du src & ajout du lien avec l'ID
+    nouveauPrixProduit = document.createElement("p");
+    nouveauPrixProduit.classList.add("card-text");
+    nouveauCorpsDeCarte.appendChild(nouveauPrixProduit);
+    nouveauPrixProduit.innerHTML = tabPrix[x] + ' EUR<br />';
+    // création du texte lien page
+    const texteLienProduit = "Pour plus de d&eacutetail...";
+    // Création et ajout du lien avec l'ID
+    nouveauLienIDProduit = document.createElement("p");
+    nouveauLienIDProduit.classList.add("card-text");
+    nouveauCorpsDeCarte.appendChild(nouveauLienIDProduit);
+    nouveauLienIDProduit.innerHTML = "<a href='" + urlProduit + "' >" + texteLienProduit + "</a>";
+}
+
+//.then(function () { ... }): quand c'est fait, exécuter la fonction spécifiée
+bddTeddy.then(function (response) {
+    // création de ma variable comportant mon objet JSON BDD
+    const jsonTableauBdd = response.json();
+    return jsonTableauBdd;
+})
+    .then(function (jsonTableauBdd) {
+        //Récupère le nombre d'objets
+        nombreObjetBddTeddy = jsonTableauBdd.length;
+
+        //Ajout dans les tableaux les infos récupérées
+        for (let i = 0; i < nombreObjetBddTeddy; i++) {
+            tabNom.push(jsonTableauBdd[i].name);
+            tabPrix.push(jsonTableauBdd[i].price);
+            tabID.push(jsonTableauBdd[i]._id);
+            tabPhoto.push(jsonTableauBdd[i].imageUrl);
+        }
+        return tabNom, tabPrix, tabID, tabPhoto, nombreObjetBddTeddy;
+    })
+    .then(function (nombreObjetBddTeddy) {
+        while (x < nombreObjetBddTeddy) {
+            new nouveauProduit(carteProduit);
+            x++;
+        }
+        return nouveauLienIDProduit;
+    })
+    .then(function () {
+        const selectMain = document.querySelector("main");
+        const selectLienCardText = document.querySelector("article");
+        selectMain.addEventListener('click', function () {
+                idSelectionneLienProduit = selectLienCardText.id;
+                console.log(idSelectionneLienProduit);
+                lienBDD += idSelectionneLienProduit;
+                console.log(lienBDD);
+                return lienBDD;
+            });   
+    });
