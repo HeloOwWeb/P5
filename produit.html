@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mon panier</a>
+                        <a class="nav-link" href="panier.html">Mon panier</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contactez-nous</a>
@@ -39,17 +39,22 @@
 
     <main class="container">
         <section>
-            <h1 class="row">Name</h1>
-            <div class="d-flex class="row"">
-                <img src="#" alt="Peluche" class="rounded d-flex w-75 col" />
-                <div class="d-flex py-4 col flex-column justify-content-between">
-                    <p id="prix">Price : </p>
-                    <p id="quantite">Quantité : </p>
-                    <p id="couleur">Couleur : <br /></p>
-                    <button>Ajouter au panier</button>
+            <form>
+                <h1 class="row">Name</h1>
+                <div class="d-flex class="row"">
+                    <img src="#" alt="Peluche" class="rounded d-flex w-75 col" />
+                    <div class="d-flex py-4 col flex-column justify-content-between">
+                        <p id="prix">Prix : </p>
+                        <p id="quantite">Quantité : 
+                            <input type="number" name="quantite" id="quantiteValeur" step="1" value="1" min="1" max="10">
+                        </p>
+                        <p id="couleur">Couleur : <br /></p>
+                        <p>Sous-total : <span id="soustotal"></span> €</p>
+                        <button type="submit">Ajouter au panier</button>
+                    </div>
                 </div>
-            </div>
-            <div class="row" id="description">Description <br /></div>
+                <div class="row" id="description">Description <br /></div>
+            </form>
         </section>
     </main>
 

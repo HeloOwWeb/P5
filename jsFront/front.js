@@ -16,6 +16,7 @@ let nouveauPrixProduit;
 const urlProduit = '#';
 let nouveauLienIDProduit;
 let x = 0;
+
 let idSelectionneLienProduit;
 let lienBDD = 'http://localhost:3000/api/teddies/';
 
@@ -24,7 +25,7 @@ function nouveauProduit(emplacement) {
     const nouvelArticle = document.createElement("article");
     nouvelArticle.classList.add("col");
     // Ajout de l'information ID à l'article
-    nouvelArticle.setAttribute("id", tabID[x]);
+    nouvelArticle.setAttribute("id", x);
     const nouvelleCarteProduit = document.createElement("div");
     nouvelleCarteProduit.classList.add("card");
     const nouveauCorpsDeCarte = document.createElement("div");
@@ -43,7 +44,7 @@ function nouveauProduit(emplacement) {
     nouvelleImageProduit.classList.add("img-thumbnail");
     nouvelleImageProduit.classList.add("img-fluid");
     nouveauCorpsDeCarte.appendChild(nouvelleImageProduit);
-    nouvelleImageProduit.src = tabPhoto[x]; 
+    nouvelleImageProduit.src = tabPhoto[x];
     // Création du Prix et ajout du src & ajout du lien avec l'ID
     nouveauPrixProduit = document.createElement("p");
     nouveauPrixProduit.classList.add("card-text");
@@ -55,8 +56,10 @@ function nouveauProduit(emplacement) {
     nouveauLienIDProduit = document.createElement("p");
     nouveauLienIDProduit.classList.add("card-text");
     nouveauCorpsDeCarte.appendChild(nouveauLienIDProduit);
-    nouveauLienIDProduit.innerHTML = "<a href='" + urlProduit + "' >" + texteLienProduit + "</a>";
+    nouveauLienIDProduit.innerHTML = "<a href='" + urlProduit + "' id='" + tabID[x] + "' >" + texteLienProduit + "</a>";
 }
+
+
 
 //.then(function () { ... }): quand c'est fait, exécuter la fonction spécifiée
 bddTeddy.then(function (response) {
@@ -84,14 +87,22 @@ bddTeddy.then(function (response) {
         }
         return nouveauLienIDProduit;
     })
-    .then(function () {
-        const selectMain = document.querySelector("main");
-        const selectLienCardText = document.querySelector("article");
-        selectMain.addEventListener('click', function () {
-                idSelectionneLienProduit = selectLienCardText.id;
+    .then(function (nouveauLienIDProduit) {
+        let zoneArticles = document.getElementById("cardProduit");
+        let articles = [];
+        articles.push(document.getElementById("cardProduit").children);
+        console.log(articles);
+
+        zoneArticles.addEventListener('click', function () {
+            idSelectionneLienProduit = articles[2].id;
                 console.log(idSelectionneLienProduit);
                 lienBDD += idSelectionneLienProduit;
                 console.log(lienBDD);
                 return lienBDD;
-            });   
+        })
     });
+
+// main
+// main eventlistener
+//  compteur
+//  recuperer mon compteur -> lien
