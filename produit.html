@@ -41,16 +41,17 @@
         <section>
             <form>
                 <h1 class="row">Name</h1>
-                <div class="d-flex class="row"">
+                <div class="d-flex class=" row"">
                     <img src="#" alt="Peluche" class="rounded d-flex w-75 col" />
                     <div class="d-flex py-4 col flex-column justify-content-between">
                         <p id="prix">Prix : </p>
-                        <p id="quantite">Quantité : 
+                        <p id="quantite">
+                            Quantité :
                             <input type="number" name="quantite" id="quantiteValeur" step="1" value="1" min="1" max="10">
                         </p>
                         <p id="couleur">Couleur : <br /></p>
                         <p>Sous-total : <span id="soustotal"></span> €</p>
-                        <button type="submit">Ajouter au panier</button>
+                        <button type="submit" id="bouton" formaction="panier.html">Ajouter au panier</button>
                     </div>
                 </div>
                 <div class="row" id="description">Description <br /></div>

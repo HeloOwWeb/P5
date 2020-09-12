@@ -13,19 +13,16 @@ let nouveauCorpsDeCarte;
 let nouveauNomProduit;
 let nouvelleImageProduit;
 let nouveauPrixProduit;
-const urlProduit = '#';
+const urlProduit = 'produit.html';
 let nouveauLienIDProduit;
 let x = 0;
-
-let idSelectionneLienProduit;
-let lienBDD = 'http://localhost:3000/api/teddies/';
 
 //Création de ma fonction nouveaux éléments avec leur class Bootstrap pour un emplacement produit
 function nouveauProduit(emplacement) {
     const nouvelArticle = document.createElement("article");
     nouvelArticle.classList.add("col");
     // Ajout de l'information ID à l'article
-    nouvelArticle.setAttribute("id", x);
+    nouvelArticle.setAttribute("id", tabID[x]);
     const nouvelleCarteProduit = document.createElement("div");
     nouvelleCarteProduit.classList.add("card");
     const nouveauCorpsDeCarte = document.createElement("div");
@@ -56,7 +53,7 @@ function nouveauProduit(emplacement) {
     nouveauLienIDProduit = document.createElement("p");
     nouveauLienIDProduit.classList.add("card-text");
     nouveauCorpsDeCarte.appendChild(nouveauLienIDProduit);
-    nouveauLienIDProduit.innerHTML = "<a href='" + urlProduit + "' id='" + tabID[x] + "' >" + texteLienProduit + "</a>";
+    nouveauLienIDProduit.innerHTML = "<a href='" + urlProduit + "?id=" + tabID[x] + "' >" + texteLienProduit + "</a>";
 }
 
 
@@ -86,23 +83,4 @@ bddTeddy.then(function (response) {
             x++;
         }
         return nouveauLienIDProduit;
-    })
-    .then(function (nouveauLienIDProduit) {
-        let zoneArticles = document.getElementById("cardProduit");
-        let articles = [];
-        articles.push(document.getElementById("cardProduit").children);
-        console.log(articles);
-
-        zoneArticles.addEventListener('click', function () {
-            idSelectionneLienProduit = articles[2].id;
-                console.log(idSelectionneLienProduit);
-                lienBDD += idSelectionneLienProduit;
-                console.log(lienBDD);
-                return lienBDD;
-        })
     });
-
-// main
-// main eventlistener
-//  compteur
-//  recuperer mon compteur -> lien

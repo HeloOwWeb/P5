@@ -1,12 +1,14 @@
 // JavaScript source code Page produit
-// Récupération de la variable ID du lien produit sélectionné
-//lienBDD = require('./front.js');
-//console.log(idSelectionneLienProduit);
-
-//const lienBDD = "http://localhost:3000/api/teddies/" + idSelectionneLienProduit;
-const lienBDD = "http://localhost:3000/api/teddies/5beaacd41c9d440000a57d97";
+//je récupère mon lien URL après l'info ?
+const url = window.location.search;
+// je crée mon paramétrage d'analyse
+const params = new URLSearchParams(url);
+// je récupère l'information qui m'interesse
+const idURL = params.get('id');
+const lienBDD = "http://localhost:3000/api/teddies/" + idURL;
+console.log(lienBDD);
 //fetch(url) : récupérer la ressource située à l'adresse url
-const bddTeddyProduit = fetch(lienBDD);
+let bddTeddyProduit = fetch(lienBDD);
 // Création des variables d'emplacement
 const titre = document.querySelector('h1');
 const img = document.querySelector('section img');
@@ -24,17 +26,20 @@ const tabColoris = [];
 let x = 0;
 let nbCouleurTeddy;
 let newOption;
+let selectCouleur;
 //Fin
 const description = document.getElementById('description');
 //SousTOTAL
 const quantiteSelect = document.getElementById("quantiteValeur");
 const sousTotalAJour = document.getElementById("soustotal");
-//varirable pour le localStorage
-const tabLocal = [];
+//variable pour le localStorage
+const validFormulaire = document.getElementById("bouton");
+const stockageLocal = localStorage;
 
 //création des champs option et ajout des coloris
 function selectForm() {
     newOption = document.createElement("option");
+    newOption.setAttribute("value", tabColoris[x]);
     newSelectEmplacement.appendChild(newOption);
     newOption.textContent = tabColoris[x];
 }
@@ -65,6 +70,7 @@ bddTeddyProduit.then(function (reponse) {
         }
         //création de l'element select
         newSelectEmplacement = document.createElement("select");
+        newSelectEmplacement.setAttribute("id", "select");
         couleur.appendChild(newSelectEmplacement);
         // Injection des couleurs
         while (x < nbCouleurTeddy) {
@@ -85,7 +91,20 @@ bddTeddyProduit.then(function (reponse) {
         return jsonTabBdd;
     })
     .then(function (jsonTabBdd) {
-        tabLocal.push(nomProduit, prixProduit, idProduit, urlImageProduit, quantiteSelect.value, newOption.value);
+        validFormulaire.addEventListener('click', function () {
+            let liste;
+            let valeurOption;
+            liste = document.getElementById("select");
+            valeurOption = liste.options[liste.selectedIndex].text;
+
+            stockageLocal.setItem('nom', nomProduit);
+            stockageLocal.setItem('prix', prixProduit);
+            stockageLocal.setItem('id', idProduit);
+            stockageLocal.setItem('url', urlImageProduit);
+            stockageLocal.setItem('quantite', quantiteSelect.value);
+            stockageLocal.setItem('option', valeurOption);
+        })
+        return jsonTabBdd;
     });
-console.log(tabLocal);
+console.log(stockageLocal);
 
