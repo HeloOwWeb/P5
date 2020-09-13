@@ -34,7 +34,6 @@ const quantiteSelect = document.getElementById("quantiteValeur");
 const sousTotalAJour = document.getElementById("soustotal");
 //variable pour le localStorage
 const validFormulaire = document.getElementById("bouton");
-const stockageLocal = localStorage;
 
 //création des champs option et ajout des coloris
 function selectForm() {
@@ -97,14 +96,19 @@ bddTeddyProduit.then(function (reponse) {
             liste = document.getElementById("select");
             valeurOption = liste.options[liste.selectedIndex].text;
 
-            stockageLocal.setItem('nom', nomProduit);
-            stockageLocal.setItem('prix', prixProduit);
-            stockageLocal.setItem('id', idProduit);
-            stockageLocal.setItem('url', urlImageProduit);
-            stockageLocal.setItem('quantite', quantiteSelect.value);
-            stockageLocal.setItem('option', valeurOption);
+            const commandeProduit = {
+                "nom": nomProduit,
+                "prix": prixProduit,
+                "id": idProduit,
+                "url": urlImageProduit,
+                "quantite": quantiteSelect.value,
+                "option": valeurOption
+            }
+            const commandeJSON = JSON.stringify(commandeProduit);
+            const ligne = "ligne";
+            const ligneID = localStorage.length + 1;
+            localStorage[ligne + ligneID] = commandeJSON;
         })
-        return jsonTabBdd;
     });
-console.log(stockageLocal);
+
 
