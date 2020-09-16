@@ -12,9 +12,6 @@ let id;
 let url;
 let quantite;
 let option;
-//variable products
-const products = [];
-
 //Fonction création de la ligne de commande dans le panier
 function createAchat() {
     const nouvelleLigneTab = document.createElement('tr');
@@ -69,66 +66,15 @@ for (i = 1; i < localStorage.length+1; i++) {
     quantite = detailCommandeJson.quantite;
     option = detailCommandeJson.option;
     new createAchat;
-    //insertion des datas products pour envoi POST
-    if (quantite > 1) {
-        for (y = 0; y < quantite; y++) {
-            products.push(id);
-        }
-    } else {
-        products.push(id);
-    }
-    
+
     //TOTAL
     const totalCommande = document.getElementById("total");
     sum += multiply;
     totalCommande.textContent = sum + " EUR";
 }
-// bouton reset
+
 boutonReset.addEventListener("click", function () {
     localStorage.clear();
 })
 
-//validation formulaire
-// variables d'emplacement
 const validerBouton = document.getElementById("valideBouton");
-const firstName = document.getElementById("firstname");
-const lastName = document.getElementById("name");
-const address = document.getElementById("address");
-const city = document.getElementById("ville");
-const email = document.getElementById("mail");
-const placeID = document.getElementById("id");
-// creation variable récuperer réponse Requete
-let orderID;
-let total = 0;
-let prixTotalCommande = 0;
-
-validerBouton.addEventListener("click", function () {
-    //Création JSON Contact
-    const contact = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        address: address.value,
-        city: city.value,
-        email: email.value
-    }
-    //création requete POST
-    fetch("http://localhost:3000/api/teddies/order", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ contact, products })
-    })
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (json) {
-            orderID = json.orderId;
-            let count = json.products.length;
-            for (let i = 0; i < count; i++) {
-                total += json.products[i].price;
-            }
-            prixTotalCommande = total / 100;
-            return orderID, prixTotalCommande;
-        });
-});
