@@ -1,0 +1,63 @@
+body{
+    font-size : 3rem;
+}
+
+h1 {
+    font-size : 7vmin;
+    color: #a11fd5;
+}
+
+h2 {
+    font-size: 6vmin;
+}
+
+.navbar{
+    font-size : 4.5vmin;
+}
+
+//header
+.navbar-toggler{
+    font-size : 3rem;
+}
+
+//footer
+footer .navbar-nav {
+    flex-direction: row;
+}
+
+footer .navbar{
+    font-size : 3.5vmin;
+}
+
+//main
+main{
+    margin-bottom : 20vmin;
+    p{
+        font-size : 4.5vmin;
+    }
+    .btn{
+        font-size: 5vmin;
+    }
+    .btn-md{
+        font-size: 4vmin;
+    }
+}
+
+//panier
+thead {
+    font-size: 4vmin;
+    font-weight : normal;
+}
+
+tbody{
+    font-size: 4vmin;
+    color: #2e2e2e;
+    h2{
+        font-size : 4.2vmin;
+    }
+}
+
+em{
+    font-size : 2.8vmin;
+    color: #444444;
+}

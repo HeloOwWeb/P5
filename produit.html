@@ -14,54 +14,53 @@
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <header class="container px-0">
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="index.html" class="nav-link nav-item-active navbar-brand">
-                <img src="./images/logo.png" alt="Orinoco : votre commerce en ligne !" />
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lg">
+            <a href="index.html" class="nav-link nav-item-active navbar-brand w-75 col-lg-6 col-xl-5">
+                <img src="./images/logo.png" alt="Orinoco : votre commerce en ligne !" class="img-fluid w-100" />
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler mr-5" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="panier.html">Mon panier</a>
+                        <a class="nav-link text-center" href="panier.html">Mon panier</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contactez-nous</a>
+                        <a class="nav-link text-center" href="#">Contactez-nous</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <main class="container">
+    <main class="container-fluid mx-0 text-center">
         <section>
             <form>
-                <h1 class="row">Name</h1>
-                <div class="d-flex class=" row"">
-                    <img src="#" alt="Peluche" class="rounded d-flex w-75 col" />
-                    <div class="d-flex py-4 col flex-column justify-content-between">
-                        <p id="prix">Prix : </p>
-                        <p id="quantite">
+                <h1 class="row my-4 w-75 mx-auto">Name</h1>
+                <div class="d-flex flex-column my-4">
+                    <img src="#" alt="Peluche" class="shadow rounded img-fluid w-75 my-4 mx-auto" />
+                    <div class="d-flex flex-column justify-content-between">
+                        <p class="my-4" id="prix">Prix : </p>
+                        <p class="my-4" id="quantite">
                             Quantité :
                             <input type="number" name="quantite" id="quantiteValeur" step="1" value="1" min="1" max="10">
                         </p>
-                        <p id="couleur">Couleur : <br /></p>
-                        <p>Sous-total : <span id="soustotal"></span> €</p>
-                        <button type="submit" id="bouton" formaction="panier.html">Ajouter au panier</button>
+                        <p class="my-4" id="couleur">Couleur : </p>
+                        <p class="my-4">Sous-total : <span id="soustotal"></span> €</p>
+                        <button class="my-4" type="submit" id="bouton" formaction="panier.html">Ajouter au panier</button>
                     </div>
                 </div>
-                <div class="row" id="description">Description <br /></div>
+                <div class="row my-4" id="description">Description <br /></div>
             </form>
         </section>
     </main>
 
-    <footer class="container-fluid">
+    <footer class="container-fluid position-fixed fixed-bottom">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <ul class="navbar-nav w-75 mx-auto">
+            <ul class="navbar-nav w-auto mx-auto">
                 <li class="nav-item w-50">
                     <a class="nav-link text-center" href="#">
                         Mentions Légales

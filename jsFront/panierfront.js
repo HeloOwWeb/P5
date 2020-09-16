@@ -21,17 +21,20 @@ function createAchat() {
     emplacementProduit.appendChild(nouvelleLigneTab);
     //Emplacement Produit (nom / img / id)
     const nouvelleColonneProduit = document.createElement('td');
+    const nouveauNomProduit = document.createElement('h2');
     nouvelleColonneProduit.setAttribute("id", "produit");
     nouvelleLigneTab.appendChild(nouvelleColonneProduit);
-    nouvelleColonneProduit.innerHTML = nom + "<br />";
+    nouvelleColonneProduit.appendChild(nouveauNomProduit);
+    nouveauNomProduit.innerHTML = nom;
     const imgProduit = document.createElement('img');
     imgProduit.src = url;
     imgProduit.classList.add("img-thumbnail");
-    imgProduit.classList.add("w-25");
+    imgProduit.classList.add("w-100");
+    imgProduit.classList.add("shadow");
     nouvelleColonneProduit.appendChild(imgProduit);
-    const idProduit = document.createElement("p");
+    const idProduit = document.createElement("em");
     nouvelleColonneProduit.appendChild(idProduit);
-    idProduit.textContent = id;
+    idProduit.innerHTML = "<br />"+ id + "<br />";
 
     //Emplacement Couleur
     const nouvelleColonneCouleur = document.createElement('td');
@@ -57,8 +60,8 @@ function createAchat() {
     nouvelleLigneTab.appendChild(nouvelleColonneSsTotal);
     multiply = prix * quantite;
     nouvelleColonneSsTotal.textContent = multiply + " EUR";    
-}
-// Boucle insertion info dans la ligne commande
+    }
+    // Boucle insertion info dans la ligne commande
 for (i = 1; i < localStorage.length+1; i++) {
     let detailCommande = localStorage.getItem('ligne' + i);
     let detailCommandeJson = JSON.parse(detailCommande);
@@ -129,6 +132,10 @@ validerBouton.addEventListener("click", function () {
                 total += json.products[i].price;
             }
             prixTotalCommande = total / 100;
-            return orderID, prixTotalCommande;
+            function RedirectionJavascript(a, b) {
+                document.location.href = "confirmation.html?order=" + a + "&total=" + b;
+            }
+            RedirectionJavascript(orderID, prixTotalCommande);
+            return orderID, prixTotalCommande;            
         });
 });
