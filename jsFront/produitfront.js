@@ -6,7 +6,6 @@ const params = new URLSearchParams(url);
 // je récupère l'information qui m'interesse
 const idURL = params.get('id');
 const lienBDD = "http://localhost:3000/api/teddies/" + idURL;
-console.log(lienBDD);
 //fetch(url) : récupérer la ressource située à l'adresse url
 let bddTeddyProduit = fetch(lienBDD);
 // Création des variables d'emplacement
@@ -52,7 +51,7 @@ bddTeddyProduit.then(function (reponse) {
     .then(function (jsonTabBdd) {
         nomProduit = jsonTabBdd.name;
         idProduit = jsonTabBdd._id;
-        prixProduit = jsonTabBdd.price;
+        prixProduit = jsonTabBdd.price / 100;
         urlImageProduit = jsonTabBdd.imageUrl;
         titre.textContent = nomProduit;
         img.src = urlImageProduit;
@@ -111,4 +110,4 @@ bddTeddyProduit.then(function (reponse) {
         })
     });
 
-
+console.log(localStorage);
