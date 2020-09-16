@@ -46,7 +46,7 @@ function nouveauProduit(emplacement) {
     nouveauPrixProduit = document.createElement("p");
     nouveauPrixProduit.classList.add("card-text");
     nouveauCorpsDeCarte.appendChild(nouveauPrixProduit);
-    nouveauPrixProduit.innerHTML = tabPrix[x] + ' EUR<br />';
+    nouveauPrixProduit.innerHTML = tabPrix[x] /100 + ' EUR<br />';
     // création du texte lien page
     const texteLienProduit = "Pour plus de d&eacutetail...";
     // Création et ajout du lien avec l'ID

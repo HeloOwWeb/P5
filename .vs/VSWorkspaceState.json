@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\jsFront"
+    "\\controllers",
+    "\\models",
+    "\\public",
+    "\\routes"
   ],
-  "SelectedNode": "\\jsFront\\front.js",
+  "SelectedNode": "\\controllers\\teddy.js",
   "PreviewInSolutionExplorer": false
 }
