@@ -69,9 +69,13 @@ function nouveauProduit(emplacement) {
 
 //.then(function () { ... }): quand c'est fait, exécuter la fonction spécifiée
 bddTeddy.then(function (response) {
-    // création de ma variable comportant mon objet JSON BDD
-    const jsonTableauBdd = response.json();
-    return jsonTableauBdd;
+    if (response.ok) {
+        // création de ma variable comportant mon objet JSON BDD
+        const jsonTableauBdd = response.json();
+        return jsonTableauBdd;
+    } else {
+        alert("Nous rencontrons des difficultes de connexion au serveur. Veuillez nous excuser pour ce desagrement.");
+    }
 })
     .then(function (jsonTableauBdd) {
         //Récupère le nombre d'objets
@@ -92,4 +96,7 @@ bddTeddy.then(function (response) {
             x++;
         }
         return nouveauLienIDProduit;
+    })
+    .catch(function (error) {
+        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
     });

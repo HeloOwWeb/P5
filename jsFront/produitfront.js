@@ -44,9 +44,13 @@ function selectForm() {
 
 // Lien avec la BDD
 bddTeddyProduit.then(function (reponse) {
-    // création de ma variable comportant mon objet JSON BDD
-    const jsonTabBdd = reponse.json();
-    return jsonTabBdd;
+    if (reponse.ok) {
+        // création de ma variable comportant mon objet JSON BDD
+        const jsonTabBdd = reponse.json();
+        return jsonTabBdd;
+    } else {
+        alert("Nous rencontrons des difficultes de connexion au serveur. Veuillez nous excuser pour ce desagrement.");
+    }
 })
     .then(function (jsonTabBdd) {
         nomProduit = jsonTabBdd.name;
@@ -108,6 +112,9 @@ bddTeddyProduit.then(function (reponse) {
             const ligneID = localStorage.length + 1;
             localStorage[ligne + ligneID] = commandeJSON;
         })
+    })
+    .catch(function (error) {
+        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
     });
 
 console.log(localStorage);

@@ -121,7 +121,41 @@ if (localStorage.length == 0) {
     let total = 0;
     let prixTotalCommande = 0;
 
-    validerBouton.addEventListener("click", function () {
+//Fonction validation formulaire
+function validFormDatas(champ, reg, message) {
+    champ.setAttribute('required', true);
+    champ.addEventListener('change', (valeurSaisie) => {
+        let valeur = valeurSaisie.target.value;
+        if (reg.test(valeur)) {
+            validerBouton.removeAttribute("disabled");
+        } else {
+            validerBouton.setAttribute("disabled", true);
+            alert("Merci de respecter le format attendu suivant " + message);
+        }
+    })
+}
+
+//Fonction de redirection HTML
+function RedirectionJavascript(a, b) {
+    document.location.href = "confirmation.html?order=" + a + "&total=" + b;
+}
+
+//Déclaration des REGEX
+const regCP = /^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$/;
+const regEMAIL = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
+//Récupération des Inputs à vérifier
+const inputCP = document.querySelector('input[name="cp"]');
+const inputEmail = document.querySelector('input[name="email"]');
+//Constante message format attendu
+const messageCP = "71510 ou 2A004";
+const messageEMAIL = "contact@orinico.fr ou contact@gmail.com";
+
+validFormDatas(inputCP, regCP, messageCP);
+validFormDatas(inputEmail, regEMAIL, messageEMAIL);
+
+validerBouton.addEventListener("click", function (e) {
+    e.preventDefault();
+    
         //Création JSON Contact
         const contact = {
             firstName: firstName.value,
@@ -139,7 +173,13 @@ if (localStorage.length == 0) {
             body: JSON.stringify({ contact, products })
         })
             .then(function (response) {
-                return response.json();
+                if (response.ok) {
+                    validerBouton.removeAttribute("disabled");
+                    return response.json();
+                } else {
+                    alert("Veuillez renseigner l'ensemble des champs Contact pour valider votre commande.");
+                    validerBouton.setAttribute("disabled", true);
+                }
             })
             .then(function (json) {
                 console.log(json);
@@ -148,11 +188,11 @@ if (localStorage.length == 0) {
                 for (let i = 0; i < count; i++) {
                     total += json.products[i].price;
                 }
-                prixTotalCommande = total / 100;
-                function RedirectionJavascript(a, b) {
-                    document.location.href = "confirmation.html?order=" + a + "&total=" + b;
-                }
+                prixTotalCommande = total / 100; 
                 RedirectionJavascript(orderID, prixTotalCommande);
                 return orderID, prixTotalCommande;
+            })
+            .catch(function (error) {
+                console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
             });
     });
