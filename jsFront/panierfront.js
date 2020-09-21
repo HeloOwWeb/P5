@@ -141,16 +141,26 @@ function RedirectionJavascript(a, b) {
 }
 
 //Déclaration des REGEX
+const regPrenomNom = /^[A-Z][A-Za-z\é\è\ê\-]+$/;
 const regCP = /^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$/;
+const regVille = /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
 const regEMAIL = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
 //Récupération des Inputs à vérifier
+const inputNom = document.querySelector('input[name="username"]');
+const inputPrenom = document.querySelector('input[name="firstname"]');
 const inputCP = document.querySelector('input[name="cp"]');
+const inputVille = document.querySelector('input[name="ville"]');
 const inputEmail = document.querySelector('input[name="email"]');
 //Constante message format attendu
+const messageName = "Angelina Jolie ou Georges Sand";
 const messageCP = "71510 ou 2A004";
+const messageVille = "Paris ou Saint-Germain-en-Laye";
 const messageEMAIL = "contact@orinico.fr ou contact@gmail.com";
 
+validFormDatas(inputNom, regPrenomNom, messageName);
+validFormDatas(inputPrenom, regPrenomNom, messageName);
 validFormDatas(inputCP, regCP, messageCP);
+validFormDatas(inputVille, regVille, messageVille);
 validFormDatas(inputEmail, regEMAIL, messageEMAIL);
 
 validerBouton.addEventListener("click", function (e) {
