@@ -21,8 +21,10 @@ let x = 0;
 function nouveauProduit(emplacement) {
     const nouvelArticle = document.createElement("article");
     nouvelArticle.classList.add("col-12");
-    nouvelArticle.classList.add("my-5");
-    nouvelArticle.classList.add("col-lg-5");
+    nouvelArticle.classList.add("mb-4");
+    nouvelArticle.classList.add("mb-md-5");
+    nouvelArticle.classList.add("col-lg-6");
+    nouvelArticle.classList.add("col-xl-4");
     const nouvelleCarteProduit = document.createElement("div");
     nouvelleCarteProduit.classList.add("card");
     nouvelleCarteProduit.classList.add("text-center");
@@ -37,7 +39,6 @@ function nouveauProduit(emplacement) {
     // Création du titre et ajout de l'info
     nouveauNomProduit = document.createElement("h2");
     nouveauNomProduit.classList.add("card-title");
-    nouveauNomProduit.classList.add("py-4");
     nouveauCorpsDeCarte.appendChild(nouveauNomProduit);
     nouveauNomProduit.textContent = tabNom[x];
     // Création de l'image et ajout du src
@@ -59,7 +60,7 @@ function nouveauProduit(emplacement) {
     // Création et ajout du lien avec l'ID
     nouveauLienIDProduit = document.createElement("p");
     nouveauLienIDProduit.classList.add("card-text");
-    nouveauLienIDProduit.classList.add("pb-4");
+    nouveauLienIDProduit.classList.add("pb-2");
     nouveauCorpsDeCarte.appendChild(nouveauLienIDProduit);
     nouveauLienIDProduit.innerHTML = "<a class='btn btn-dark btn-lg btn-md' href='" + urlProduit + "?id=" + tabID[x] + "' >" + texteLienProduit + "</a>";
 }

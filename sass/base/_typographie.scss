@@ -1,52 +1,131 @@
-body{
-    font-size : 3rem;
+body {
+    font-size: 3rem;
+
+    @include media-breakpoint-up(md) {
+        font-size: 2rem;
+    }
 }
 
 h1 {
-    font-size : 7vmin;
-    color: #a11fd5;
+    font-size: 8vmin;
+    color: $purple;
+
+    @include media-breakpoint-up(md) {
+        font-size: 7vmin;
+    }
+
+    @include media-breakpoint-up(lg) {
+        font-size: 6vmin;
+    }
+    
+    @include media-breakpoint-up(xl) {
+        font-size: 5vmin;
+    }
 }
 
 h2 {
-    font-size: 6vmin;
+    font-size: 7.5vmin;
+
+    @include media-breakpoint-up(md) {
+        font-size: 6vmin;
+    }
+
+    @include media-breakpoint-up(lg) {
+        font-size: 5vmin;
+    }
+
+    @include media-breakpoint-up(xl) {
+        font-size: 4vmin;
+    }
 }
 
-.navbar{
-    font-size : 4.5vmin;
-}
+.navbar {
+    font-size: 5vmin;
 
-//header
-.navbar-toggler{
-    font-size : 3rem;
-}
+    @include media-breakpoint-up(md) {
+        font-size: 4vmin;
+    }
 
-//footer
-footer .navbar-nav {
-    flex-direction: row;
-}
+    @include media-breakpoint-up(lg) {
+        font-size: 3vmin;
+    }
 
-footer .navbar{
-    font-size : 3.5vmin;
+    @include media-breakpoint-up(xl) {
+        font-size: 2.8vmin;
+    }
 }
 
 //main
-main{
-    margin-bottom : 20vmin;
-    p{
-        font-size : 4.5vmin;
+main {
+    p {
+        font-size: 5.5vmin;
+
+        @include media-breakpoint-up(md) {
+            font-size: 4.5vmin;
+        }
+
+        @include media-breakpoint-up(lg) {
+            font-size: 3.5vmin;
+        }
+
+        @include media-breakpoint-up(xl) {
+            font-size: 2.5vmin;
+        }
     }
-    .btn{
-        font-size: 5vmin;
+
+    .btn {
+        font-size: 5.8vmin;
+
+        @include media-breakpoint-up(md) {
+            font-size: 4vmin;
+        }
+
+        @include media-breakpoint-up(lg) {
+            font-size: 3.5vmin;
+        }
+
+        @include media-breakpoint-up(xl) {
+            font-size: 2.5vmin;
+        }
     }
-    .btn-md{
-        font-size: 4vmin;
+}
+
+button {
+    font-size: 5.5vmin;
+
+    @include media-breakpoint-up(md) {
+        font-size: 4.5vmin;
+    }
+
+    @include media-breakpoint-up(xl) {
+        font-size: 2.5vmin;
+    }
+}
+
+//footer
+footer {
+    .navbar {
+        font-size: 3.5vmin;
+
+        @include media-breakpoint-up(lg) {
+            font-size: 3vmin;
+        }
     }
 }
 
 //panier
 thead {
     font-size: 4vmin;
-    font-weight : normal;
+    font-weight: normal;
+
+    @include media-breakpoint-up(lg) {
+        font-size: 3vmin;
+    }
+
+    @include media-breakpoint-up(xl) {
+        font-size: 2.5vmin;
+        font-weight: normal;
+    }
 }
 
 tbody{
@@ -57,7 +136,33 @@ tbody{
     }
 }
 
-em{
-    font-size : 2.8vmin;
+em {
+    font-size: 2.8vmin;
     color: #444444;
+    overflow-wrap: break-word;
 }
+
+input[type=button] {
+    font-size: 5.5vmin;
+
+    @include media-breakpoint-up(md) {
+        font-size: 4.5vmin;
+    }
+
+    @include media-breakpoint-up(lg) {
+        font-size: 3.5vmin;
+    }
+
+    @include media-breakpoint-up(xl) {
+        font-size: 3vmin;
+    }
+}
+
+.alinea {
+    text-indent: 10vmin;
+
+    @include media-breakpoint-up(lg) {
+        text-indent: 8vmin;
+    }
+}
+

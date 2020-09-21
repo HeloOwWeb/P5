@@ -1,0 +1,18 @@
+//main
+main {
+    margin-bottom: 25vmin;
+
+    @include media-breakpoint-up(md) {
+        margin-bottom: 20vmin;
+    }
+
+    @include media-breakpoint-up(xl) {
+        margin-bottom: 10vmin;
+    }
+}
+
+footer {
+    .navbar-nav {
+        flex-direction: row;
+    }
+}
