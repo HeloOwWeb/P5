@@ -19,17 +19,17 @@ const products = [];
 
 //Fonction création de la ligne de commande dans le panier
 function createAchat() {
-    const nouvelleLigneTab = document.createElement('tr');
+    const nouvelleLigneTab = document.createElement("tr");
     emplacementProduit.appendChild(nouvelleLigneTab);
     //Emplacement Produit (nom / img / id)
-    const nouvelleColonneProduit = document.createElement('td');
-    const nouveauNomProduit = document.createElement('h2');
+    const nouvelleColonneProduit = document.createElement("td");
+    const nouveauNomProduit = document.createElement("h2");
     nouvelleColonneProduit.setAttribute("id", "produit");
     nouvelleColonneProduit.classList.add("text-center");
     nouvelleLigneTab.appendChild(nouvelleColonneProduit);
     nouvelleColonneProduit.appendChild(nouveauNomProduit);
     nouveauNomProduit.innerHTML = nom;
-    const imgProduit = document.createElement('img');
+    const imgProduit = document.createElement("img");
     imgProduit.src = url;
     imgProduit.classList.add("img-thumbnail");
     imgProduit.classList.add("w-50");
@@ -40,28 +40,28 @@ function createAchat() {
     idProduit.innerHTML = "<br />"+ id + "<br />";
 
     //Emplacement Couleur
-    const nouvelleColonneCouleur = document.createElement('td');
+    const nouvelleColonneCouleur = document.createElement("td");
     nouvelleColonneCouleur.setAttribute("id", "couleur");
     nouvelleColonneCouleur.classList.add("align-middle");
     nouvelleLigneTab.appendChild(nouvelleColonneCouleur);
     nouvelleColonneCouleur.textContent = option;
 
     //Emplacement Quantité
-    const nouvelleColonneQuantite = document.createElement('td');
+    const nouvelleColonneQuantite = document.createElement("td");
     nouvelleColonneQuantite.setAttribute("id", "quantite");
     nouvelleColonneQuantite.classList.add("align-middle");
     nouvelleLigneTab.appendChild(nouvelleColonneQuantite);
     nouvelleColonneQuantite.textContent = quantite;
 
     //Emplacement Prix
-    const nouvelleColonnePrix = document.createElement('td');
+    const nouvelleColonnePrix = document.createElement("td");
     nouvelleColonnePrix.setAttribute("id", "prix");
     nouvelleColonnePrix.classList.add("align-middle");
     nouvelleLigneTab.appendChild(nouvelleColonnePrix);
     nouvelleColonnePrix.textContent = prix + " EUR";
 
     //Emplacement Sous Total
-    const nouvelleColonneSsTotal = document.createElement('td');
+    const nouvelleColonneSsTotal = document.createElement("td");
     nouvelleColonneSsTotal.setAttribute("id", "sousTotal");
     nouvelleColonneSsTotal.classList.add("align-middle");
     nouvelleLigneTab.appendChild(nouvelleColonneSsTotal);
@@ -80,7 +80,7 @@ if (localStorage.length == 0) {
 
     // Boucle insertion info dans la ligne commande
     for (i = 1; i < localStorage.length + 1; i++) {
-        let detailCommande = localStorage.getItem('ligne' + i);
+        let detailCommande = localStorage.getItem("ligne" + i);
         let detailCommandeJson = JSON.parse(detailCommande);
         nom = detailCommandeJson.nom;
         prix = detailCommandeJson.prix;
@@ -123,8 +123,8 @@ if (localStorage.length == 0) {
 
 //Fonction validation formulaire
 function validFormDatas(champ, reg, message) {
-    champ.setAttribute('required', true);
-    champ.addEventListener('change', (valeurSaisie) => {
+    champ.setAttribute("required", true);
+    champ.addEventListener("change", (valeurSaisie) => {
         let valeur = valeurSaisie.target.value;
         if (reg.test(valeur)) {
             validerBouton.removeAttribute("disabled");
@@ -163,9 +163,8 @@ validFormDatas(inputCP, regCP, messageCP);
 validFormDatas(inputVille, regVille, messageVille);
 validFormDatas(inputEmail, regEMAIL, messageEMAIL);
 
-validerBouton.addEventListener("click", function (e) {
-    e.preventDefault();
-    
+validerBouton.addEventListener("click", function () {
+
         //Création JSON Contact
         const contact = {
             firstName: firstName.value,
@@ -176,9 +175,9 @@ validerBouton.addEventListener("click", function (e) {
         }
         //création requete POST
         fetch("http://localhost:3000/api/teddies/order", {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({ contact, products })
         })
@@ -199,10 +198,13 @@ validerBouton.addEventListener("click", function (e) {
                     total += json.products[i].price;
                 }
                 prixTotalCommande = total / 100; 
-                RedirectionJavascript(orderID, prixTotalCommande);
+               RedirectionJavascript(orderID, prixTotalCommande);
+                console.log(orderID);
+                console.log(prixTotalCommande);
+
                 return orderID, prixTotalCommande;
             })
             .catch(function (error) {
-                console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+                console.log("Problem avec OP fetch: " + error.message);
             });
     });

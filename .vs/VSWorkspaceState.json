@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\jsFront",
-    "\\sass",
-    "\\sass\\base"
+    "\\sass"
   ],
-  "SelectedNode": "\\jsFront\\panierfront.js",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

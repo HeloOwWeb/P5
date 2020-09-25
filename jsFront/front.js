@@ -1,5 +1,5 @@
 //fetch(url) : récupérer la ressource située à l'adresse url
-const bddTeddy = fetch('http://localhost:3000/api/teddies/');
+const bddTeddy = fetch("http://localhost:3000/api/teddies/");
 // variable nombre de peluche
 let nombreObjetBddTeddy;
 // tableau des noms de peluche
@@ -7,17 +7,17 @@ const tabNom = [];
 const tabPhoto = [];
 const tabID = [];
 const tabPrix = [];
-// Emplacement de ma grille Produits & emplacement du contenu dynamique Produit & emplacement Titre produit & emplacement Description produit
-let carteProduit = document.getElementById('cardProduit');
+// Emplacement grille Produits
+let carteProduit = document.getElementById("cardProduit");
 let nouveauCorpsDeCarte;
 let nouveauNomProduit;
 let nouvelleImageProduit;
 let nouveauPrixProduit;
-const urlProduit = 'produit.html';
+const urlProduit = "produit.html";
 let nouveauLienIDProduit;
 let x = 0;
 
-//Création de ma fonction nouveaux éléments avec leur class Bootstrap pour un emplacement produit
+//Create function news elements with class Bootstrap for produit place
 function nouveauProduit(emplacement) {
     const nouvelArticle = document.createElement("article");
     nouvelArticle.classList.add("col-12");
@@ -28,7 +28,7 @@ function nouveauProduit(emplacement) {
     const nouvelleCarteProduit = document.createElement("div");
     nouvelleCarteProduit.classList.add("card");
     nouvelleCarteProduit.classList.add("text-center");
-    const nouveauCorpsDeCarte = document.createElement("div");
+    nouveauCorpsDeCarte = document.createElement("div");
     nouveauCorpsDeCarte.classList.add("card-body");
     nouveauCorpsDeCarte.classList.add("border");
     nouveauCorpsDeCarte.classList.add("border-dark");
@@ -54,7 +54,7 @@ function nouveauProduit(emplacement) {
     nouveauPrixProduit.classList.add("card-text");
     nouveauPrixProduit.classList.add("pt-4");
     nouveauCorpsDeCarte.appendChild(nouveauPrixProduit);
-    nouveauPrixProduit.innerHTML = tabPrix[x] /100 + ' EUR<br />';
+    nouveauPrixProduit.innerHTML = tabPrix[x] /100 + " EUR<br />";
     // création du texte lien page
     const texteLienProduit = "Pour plus de d&eacutetail...";
     // Création et ajout du lien avec l'ID
@@ -74,7 +74,7 @@ bddTeddy.then(function (response) {
         const jsonTableauBdd = response.json();
         return jsonTableauBdd;
     } else {
-        alert("Nous rencontrons des difficultes de connexion au serveur. Veuillez nous excuser pour ce desagrement.");
+        alert("Probleme de connexion au serveur. Veuillez nous excuser.");
     }
 })
     .then(function (jsonTableauBdd) {
@@ -98,5 +98,5 @@ bddTeddy.then(function (response) {
         return nouveauLienIDProduit;
     })
     .catch(function (error) {
-        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+        console.log("Problem avec OP fetch: " + error.message);
     });

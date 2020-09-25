@@ -4,22 +4,22 @@ const url = window.location.search;
 // je crée mon paramétrage d'analyse
 const params = new URLSearchParams(url);
 // je récupère l'information qui m'interesse
-const idURL = params.get('id');
+const idURL = params.get("id");
 const lienBDD = "http://localhost:3000/api/teddies/" + idURL;
 //fetch(url) : récupérer la ressource située à l'adresse url
 let bddTeddyProduit = fetch(lienBDD);
 // Création des variables d'emplacement
-const titre = document.querySelector('h1');
-const img = document.querySelector('section img');
-const prix = document.getElementById('prix');
-const quantite = document.getElementById('quantite');
+const titre = document.querySelector("h1");
+const img = document.querySelector("section img");
+const prix = document.getElementById("prix");
+const quantite = document.getElementById("quantite");
 // Variable nom, id,url image et prix
 let nomProduit;
 let idProduit;
 let prixProduit;
 let urlImageProduit;
 //Couleurs
-const couleur = document.getElementById('couleur');
+const couleur = document.getElementById("couleur");
 let newSelectEmplacement;
 const tabColoris = [];
 let x = 0;
@@ -27,7 +27,7 @@ let nbCouleurTeddy;
 let newOption;
 let selectCouleur;
 //Fin
-const description = document.getElementById('description');
+const description = document.getElementById("description");
 //SousTOTAL
 const quantiteSelect = document.getElementById("quantiteValeur");
 const sousTotalAJour = document.getElementById("soustotal");
@@ -49,7 +49,7 @@ bddTeddyProduit.then(function (reponse) {
         const jsonTabBdd = reponse.json();
         return jsonTabBdd;
     } else {
-        alert("Nous rencontrons des difficultes de connexion au serveur. Veuillez nous excuser pour ce desagrement.");
+        alert("Probleme de connexion au serveur. Veuillez nous excuser.");
     }
 })
     .then(function (jsonTabBdd) {
@@ -93,7 +93,7 @@ bddTeddyProduit.then(function (reponse) {
         return jsonTabBdd;
     })
     .then(function (jsonTabBdd) {
-        validFormulaire.addEventListener('click', function () {
+        validFormulaire.addEventListener("click", function () {
             let liste;
             let valeurOption;
             liste = document.getElementById("select");
@@ -114,7 +114,7 @@ bddTeddyProduit.then(function (reponse) {
         })
     })
     .catch(function (error) {
-        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+        console.log("Problem avec OP fetch: " + error.message);
     });
 
 console.log(localStorage);
